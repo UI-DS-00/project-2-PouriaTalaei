@@ -1,5 +1,6 @@
 public class LinkedList<T> {
     private static class Node<T> {
+        private String nameOfPlayList;
         private T element;
         private Node<T> next;
 
@@ -19,6 +20,15 @@ public class LinkedList<T> {
         public void setNext(Node<T> next) {
             this.next = next;
         }
+
+        public String getNameOfPlayList() {
+            return nameOfPlayList;
+        }
+
+        public void setNameOfPlayList(String nameOfPlayList) {
+            this.nameOfPlayList = nameOfPlayList;
+        }
+
     }
 
     private Node<T> head = null; // head node of the list (or null if empty)
