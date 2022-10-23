@@ -1,6 +1,5 @@
 public class LinkedList<T> {
     private static class Node<T> {
-        private String nameOfPlayList;
         private T element;
         private Node<T> next;
 
@@ -8,6 +7,10 @@ public class LinkedList<T> {
             this.element = element;
             this.next = next;
         }
+
+        public Node() {
+        }
+
 
         public T getElement() {
             return element;
@@ -21,22 +24,24 @@ public class LinkedList<T> {
             this.next = next;
         }
 
-        public String getNameOfPlayList() {
-            return nameOfPlayList;
-        }
-
-        public void setNameOfPlayList(String nameOfPlayList) {
-            this.nameOfPlayList = nameOfPlayList;
-        }
-
     }
 
+    private String nameOfPlayList;
     private Node<T> head = null; // head node of the list (or null if empty)
     private Node<T> tail = null; // last node of the list (or null if empty)
     private int size = 0; // number of nodes in the list
 
-    public LinkedList() {
+    public LinkedList(String nameOfPlayList) {
+        setNameOfPlayList(nameOfPlayList);
     } // constructs an initially empty list
+
+    public String getNameOfPlayList() {
+        return nameOfPlayList;
+    }
+
+    public void setNameOfPlayList(String nameOfPlayList) {
+        this.nameOfPlayList = nameOfPlayList;
+    }
 
     // access methods
     public int size() {
@@ -74,13 +79,55 @@ public class LinkedList<T> {
         size++;
     }
 
-    public T removeFirst() { // removes and returns the first element
-        if (isEmpty()) return null; // nothing to remove
+    public void removeFirst() { // removes and returns the first element
+        if (isEmpty()) return; // nothing to remove
         T answer = head.getElement();
         head = head.getNext(); // will become null if list had only one node
         size--;
         if (size == 0)
             tail = null; // special case as list is now empty
-        return answer;
+    }
+
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public void setHead(Node<T> head) {
+        this.head = head;
+    }
+
+    public Node<T> getTail() {
+        return tail;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setTail(Node<T> tail) {
+        this.tail = tail;
+    }
+
+
+    public void removeSong(LinkedList<Music> playList, String nameOfSong) {
+        if (playList.getSize() == 0) return;
+        Node<Music> current = new Node<Music>();
+        current = (Node<Music>) playList.getHead();
+        Node<Music> previous = new Node<Music>();
+        while ((current != null) && current.element.getTrackName() != nameOfSong) {
+            previous = current;
+            current = current.next;
+        }
+        if (current != null) {
+            if (current == head)
+                head = (Node<T>) current.next;
+            else
+                previous.next = current.next;
+            size = size - 1;
+        }
     }
 }
