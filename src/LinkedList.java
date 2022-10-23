@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class LinkedList<T> {
     private static class Node<T> {
         private T element;
@@ -115,10 +117,10 @@ public class LinkedList<T> {
 
     public void removeSong(LinkedList<Music> playList, String nameOfSong) {
         if (playList.getSize() == 0) return;
-        Node<Music> current = new Node<Music>();
-        current = (Node<Music>) playList.getHead();
+        Node<Music> current ;
+        current = playList.getHead();
         Node<Music> previous = new Node<Music>();
-        while ((current != null) && current.element.getTrackName() != nameOfSong) {
+        while ((current != null) && (!Objects.equals(current.element.getTrackName(), nameOfSong))) {
             previous = current;
             current = current.next;
         }

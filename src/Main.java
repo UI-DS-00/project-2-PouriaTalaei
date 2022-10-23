@@ -5,12 +5,17 @@ public class Main {
         ScanFile scanFile = new ScanFile();
         scanFile.ScanCSVFile();
 
-        ArrayList<LinkedList<Music>> playlists = new ArrayList<>();
-        PlayListMethods playListMethods = new PlayListMethods();
 
-//        playList.addFirst(scanFile.fileMusic.get(5));
-//        playList.addFirst(scanFile.fileMusic.get(3));
-//        playList.removeFirst();
-//        playlists.add(playList);
+        ArrayList<LinkedList<Music>> playlists = new ArrayList<>();
+        LinkedList<Music> playList = new LinkedList<Music>("plaListOnE");
+
+
+        playList.addFirst(scanFile.fileMusic.get(5));
+        playList.addFirst(scanFile.fileMusic.get(9));
+        playList.addFirst(scanFile.fileMusic.get(3));
+        playList.addFirst(scanFile.fileMusic.get(7));
+        playList.removeFirst();
+        playList.removeSong(playList,"cry");
+        playlists.add(playList);
     }
 }
