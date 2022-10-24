@@ -117,7 +117,7 @@ public class LinkedList<T> {
 
     public void removeSong(LinkedList<Music> playList, String nameOfSong) {
         if (playList.getSize() == 0) return;
-        Node<Music> current ;
+        Node<Music> current;
         current = playList.getHead();
         Node<Music> previous = new Node<Music>();
         while ((current != null) && (!Objects.equals(current.element.getTrackName(), nameOfSong))) {
@@ -130,6 +130,40 @@ public class LinkedList<T> {
             else
                 previous.next = current.next;
             size = size - 1;
+        }
+    }
+
+
+    PlayListMethods playListMethods = new PlayListMethods();
+
+    public void mergePlayLists(LinkedList<Music> playList1, LinkedList<Music> playList2) {
+        LinkedList<Music> mergePlayList = new LinkedList<>("mergePlayList1");
+        PlayListMethods.playlists.add(mergePlayList);
+        Node<Music> currentPlayList1;
+        currentPlayList1 = playList1.getHead();
+        Node<Music> previous1 = new Node<>();
+        Node<Music> currentPlayList2;
+        currentPlayList2 = playList2.getHead();
+        Node<Music> previous2 = new Node<>();
+
+        //add songs of playList one to mergePlayList
+        while (currentPlayList1 != null) {
+            mergePlayList.addLast(currentPlayList1.element);
+            currentPlayList1 = currentPlayList1.next;
+        }
+        currentPlayList1 = playList1.getHead();
+        boolean repetitiousSong = false;
+        while (currentPlayList2 != null) {
+            while ((currentPlayList1 != null)) {
+                if (Objects.equals(currentPlayList1.element.getTrackName(), currentPlayList2.element.getTrackName()))
+                    repetitiousSong = true;
+                currentPlayList1 = currentPlayList1.next;
+            }
+            currentPlayList1 = playList1.getHead();
+            if (!repetitiousSong)
+                mergePlayList.addLast(currentPlayList2.element);
+            else repetitiousSong = false;
+            currentPlayList2 = currentPlayList2.next;
         }
     }
 }

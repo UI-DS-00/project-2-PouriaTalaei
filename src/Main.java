@@ -6,16 +6,23 @@ public class Main {
         scanFile.ScanCSVFile();
 
 
-        ArrayList<LinkedList<Music>> playlists = new ArrayList<>();
+       // ArrayList<LinkedList<Music>> playlists = new ArrayList<>();
         LinkedList<Music> playList = new LinkedList<Music>("plaListOnE");
+        LinkedList<Music> playList2 = new LinkedList<>("playLiSTtwO");
 
 
         playList.addFirst(scanFile.fileMusic.get(5));
         playList.addFirst(scanFile.fileMusic.get(9));
         playList.addFirst(scanFile.fileMusic.get(3));
-        playList.addFirst(scanFile.fileMusic.get(7));
-        playList.removeFirst();
-        playList.removeSong(playList,"cry");
-        playlists.add(playList);
+     //   playList.addFirst(scanFile.fileMusic.get(7));
+      //  playList.removeFirst();
+        //playList2.addFirst(scanFile.fileMusic.get(10));
+        playList2.addFirst(scanFile.fileMusic.get(9));
+        playList2.addFirst(scanFile.fileMusic.get(4));
+      //  playList.removeSong(playList,"cry");
+        PlayListMethods.playlists.add(playList);
+        PlayListMethods.playlists.add(playList2);
+        playList.mergePlayLists(playList,playList2);
+
     }
 }
