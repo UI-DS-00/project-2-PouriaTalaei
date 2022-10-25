@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ScanFile {
-    // create scanner instance
     ArrayList<Music> fileMusic = new ArrayList<>();
 
     public void ScanCSVFile() {

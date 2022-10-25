@@ -1,7 +1,4 @@
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.Collections;
-
 
 public class LinkedList<T> {
     private static class Node<T> {
@@ -16,7 +13,6 @@ public class LinkedList<T> {
         public Node() {
         }
 
-
         public T getElement() {
             return element;
         }
@@ -28,17 +24,16 @@ public class LinkedList<T> {
         public void setNext(Node<T> next) {
             this.next = next;
         }
-
     }
 
     private String nameOfPlayList;
-    private Node<T> head = null; // head node of the list (or null if empty)
-    private Node<T> tail = null; // last node of the list (or null if empty)
-    private int size = 0; // number of nodes in the list
+    private Node<T> head = null;
+    private Node<T> tail = null;
+    private int size = 0;
 
     public LinkedList(String nameOfPlayList) {
         setNameOfPlayList(nameOfPlayList);
-    } // constructs an initially empty list
+    }
 
     public String getNameOfPlayList() {
         return nameOfPlayList;
@@ -48,7 +43,6 @@ public class LinkedList<T> {
         this.nameOfPlayList = nameOfPlayList;
     }
 
-    // access methods
     public int size() {
         return size;
     }
@@ -57,40 +51,39 @@ public class LinkedList<T> {
         return size == 0;
     }
 
-    public T first() { // returns (but does not remove) the first element
+    public T first() {
         if (isEmpty()) return null;
         return head.getElement();
     }
 
-    public T last() { // returns (but does not remove) the last element
+    public T last() {
         if (isEmpty()) return null;
         return tail.getElement();
     }
 
-    // update methods
-    public void addFirst(T t) { // adds element e to the front of the list
+    public void addFirst(T t) {
         head = new Node<>(t, head); // create and link a new node
         if (size == 0)
-            tail = head; // special case: new node becomes tail also
+            tail = head;
         size++;
     }
 
-    public void addLast(T t) { // adds element e to the end of the list
-        Node<T> newest = new Node<>(t, null); // node will eventually be the tail
+    public void addLast(T t) {
+        Node<T> newest = new Node<>(t, null);
         if (isEmpty())
-            head = newest; // special case: previously empty list
-        else tail.setNext(newest); // new node after existing tail
-        tail = newest; // new node becomes the tail
+            head = newest;
+        else tail.setNext(newest);
+        tail = newest;
         size++;
     }
 
-    public void removeFirst() { // removes and returns the first element
-        if (isEmpty()) return; // nothing to remove
+    public void removeFirst() {
+        if (isEmpty()) return;
         T answer = head.getElement();
-        head = head.getNext(); // will become null if list had only one node
+        head = head.getNext();
         size--;
         if (size == 0)
-            tail = null; // special case as list is now empty
+            tail = null;
     }
 
     public Node<T> getHead() {
@@ -122,7 +115,7 @@ public class LinkedList<T> {
         if (playList.getSize() == 0) return;
         Node<Music> current;
         current = playList.getHead();
-        Node<Music> previous = new Node<Music>();
+        Node<Music> previous = new Node<>();
         while ((current != null) && (!Objects.equals(current.element.getTrackName(), nameOfSong))) {
             previous = current;
             current = current.next;
@@ -136,17 +129,13 @@ public class LinkedList<T> {
         }
     }
 
-    PlayListMethods playListMethods = new PlayListMethods();
-
     public void mergePlayLists(LinkedList<Music> playList1, LinkedList<Music> playList2) {
         LinkedList<Music> mergePlayList = new LinkedList<>("mergePlayList1");
         PlayListMethods.playlists.add(mergePlayList);
         Node<Music> currentPlayList1;
         currentPlayList1 = playList1.getHead();
-        Node<Music> previous1 = new Node<>();
         Node<Music> currentPlayList2;
         currentPlayList2 = playList2.getHead();
-        Node<Music> previous2 = new Node<>();
 
         //add songs of playList one to mergePlayList
         while (currentPlayList1 != null) {
@@ -220,7 +209,6 @@ public class LinkedList<T> {
         current = playList.getHead();
         while (current != null) {
             printInfoOfSong(current.element);
-            //  playListMethods.updateLikedSongs(current.element);
             System.out.println();
             current = current.next;
         }
@@ -240,11 +228,6 @@ public class LinkedList<T> {
         if (playList.getSize() == 0) return;
         Node<Music> current;
         current = playList.getHead();
-        //Node<Music> previous = new LinkedList.Node<Music>();
-//        while ((current != null) && (Objects.equals(current.element.getArtistName(), theFilterWord))) {
-//
-//        }
-
 
         switch (numberOfMenu) {
             case 1://ArtistName
