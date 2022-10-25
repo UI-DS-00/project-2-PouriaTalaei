@@ -221,9 +221,9 @@ public class LinkedList<T> {
         Node<Music> current;
         current = playList.getHead();
         //Node<Music> previous = new LinkedList.Node<Music>();
-        while ((current != null) && (Objects.equals(current.element.getArtistName(), theFilterWord))) {
-
-        }
+//        while ((current != null) && (Objects.equals(current.element.getArtistName(), theFilterWord))) {
+//
+//        }
 
 
         switch (numberOfMenu) {
@@ -269,7 +269,29 @@ public class LinkedList<T> {
                 }
                 break;
         }
-//show filterPlayList
-
+        showPlayList(filterPlayList);
     }
+
+    public void showPlayList(LinkedList<Music> playList) {
+        if (playList.getSize() == 0)
+            System.out.println("Find No Song!");
+        else
+            printInfoOfSong(playList);
+    }
+
+    public void printInfoOfSong(LinkedList<Music> playList) {
+        Node<Music> current;
+        current = playList.getHead();
+        while (current != null) {
+            System.out.println("ArtistName : " + current.element.getArtistName());
+            System.out.println("Track Name : " + current.element.getTrackName());
+            System.out.println("Release Date : " + current.element.getReleaseDate());
+            System.out.println("Genre : " + current.element.getGenre());
+            System.out.println("Len : " + current.element.getLen());
+            System.out.println("Topic : " + current.element.getTopic());
+            current = current.next;
+        }
+    }
+
+
 }
