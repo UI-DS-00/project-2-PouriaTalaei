@@ -1,6 +1,7 @@
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.Collections;
+
 
 public class LinkedList<T> {
     private static class Node<T> {
@@ -168,8 +169,8 @@ public class LinkedList<T> {
         }
     }
 
-    public void shuffleMerge(String nameOfShufflePlayList) {
-        LinkedList<Music> shufflePlayList = new LinkedList<>(nameOfShufflePlayList);
+    public void shuffleMerge() {
+        LinkedList<Music> shufflePlayList = new LinkedList<>("ShufflePlayList");
         ArrayList<Music> allSongs = new ArrayList<>();
         ArrayList<Integer> randomNumbers = new ArrayList<>();
         Random random = new Random();
@@ -214,8 +215,27 @@ public class LinkedList<T> {
         }
     }
 
+    public void playMusic(LinkedList<Music> playList) {
+        Node<Music> current;
+        current = playList.getHead();
+        while (current != null) {
+            printInfoOfSong(current.element);
+            //  playListMethods.updateLikedSongs(current.element);
+            System.out.println();
+            current = current.next;
+        }
+    }
 
-    public <T extends LinkedList<Music>> void filter(int numberOfMenu, String theFilterWord, LinkedList<Music> playList) {
+    public void printInfoOfSong(Music music){
+        System.out.println("ArtistName : " + music.getArtistName());
+        System.out.println("Track Name : " + music.getTrackName());
+        System.out.println("Release Date : " + music.getReleaseDate());
+        System.out.println("Genre : " + music.getGenre());
+        System.out.println("Len : " + music.getLen());
+        System.out.println("Topic : " + music.getTopic());
+    }
+
+    public void filter(int numberOfMenu, String theFilterWord, LinkedList<Music> playList) {
         LinkedList<Music> filterPlayList = new LinkedList<>("FilterPlayList");
         if (playList.getSize() == 0) return;
         Node<Music> current;
@@ -281,10 +301,10 @@ public class LinkedList<T> {
         if (playList.getSize() == 0)
             System.out.println("Find No Song!");
         else
-            printInfoOfSong(playList);
+            printPlayList(playList);
     }
 
-    public void printInfoOfSong(LinkedList<Music> playList) {
+    public void printPlayList(LinkedList<Music> playList) {
         Node<Music> current;
         current = playList.getHead();
         while (current != null) {
@@ -294,10 +314,50 @@ public class LinkedList<T> {
             System.out.println("Genre : " + current.element.getGenre());
             System.out.println("Len : " + current.element.getLen());
             System.out.println("Topic : " + current.element.getTopic());
+           // System.out.println("liked : " + current.element.favorite);
             System.out.println();
             current = current.next;
         }
     }
 
+    public void addPlayListToArrayList(ArrayList<Music> sortPlayList, LinkedList<Music> playList) {
+        Node<Music> current;
+        current = playList.getHead();
+        while (current != null) {
+            sortPlayList.add(current.element);
+            current = current.next;
+        }
+        for (int i = 0; i < sortPlayList.size(); i++) {
 
+        //    if (playListMethods.isSwap(sortPlayList.get(i).getTrackName(), sortPlayList.get(i + 1).getTrackName()))
+        }
+    }
+
+
+//    public void sortSongs(LinkedList<Music> playList) {
+//        Node<Music> node1;
+//        Node<Music> node2;
+//        Node<Music> node3;
+//        Node<Music> previous;
+//        node1 = playList.getHead();
+//        node2 = playList.getHead().getNext();
+//
+//
+////        boolean isSort = false;
+////        while (!isSort) {
+////            while ((node1 != null) || (node2 != null)) {
+////                if (playListMethods.isSwap(node1.element.getTrackName(), node2.element.getTrackName())) {
+////                    previous = playList.getHead();
+////                    while (previous != null) {
+////                        if (previous.next != node1) {
+////                            previous = previous.next;
+////                        } else break;
+////                    }
+////                    node3 = node1;
+////                    previous.next = node2;
+////                    node2.next = node3;
+////                }
+////            }
+////        }
+//    }
 }

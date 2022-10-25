@@ -5,7 +5,6 @@ public class Music {
     private String genre;
     private String len;
     private String topic;
-    boolean favorite = false;
 
     public Music(String artistName, String trackName, String releaseDate, String genre, String len, String topic) {
         this.artistName = artistName;
