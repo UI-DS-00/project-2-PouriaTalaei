@@ -235,36 +235,41 @@ public class LinkedList<T> {
                 break;
 
             case 2://track Name
-                while ((current != null) && (Objects.equals(current.element.getTrackName(), theFilterWord))) {
-                    filterPlayList.addLast(current.element);
+                while (current != null) {
+                    if (Objects.equals(current.element.getTrackName(), theFilterWord))
+                        filterPlayList.addLast(current.element);
                     current = current.next;
                 }
                 break;
 
             case 3://releaseDate
-                while ((current != null) && (Objects.equals(current.element.getReleaseDate(), theFilterWord))) {
-                    filterPlayList.addLast(current.element);
+                while (current != null) {
+                    if (Objects.equals(current.element.getReleaseDate(), theFilterWord))
+                        filterPlayList.addLast(current.element);
                     current = current.next;
                 }
                 break;
 
             case 4://genre
-                while ((current != null) && (Objects.equals(current.element.getGenre(), theFilterWord))) {
-                    filterPlayList.addLast(current.element);
+                while (current != null) {
+                    if (Objects.equals(current.element.getGenre(), theFilterWord))
+                        filterPlayList.addLast(current.element);
                     current = current.next;
                 }
                 break;
 
             case 5://len
-                while ((current != null) && (Objects.equals(current.element.getLen(), theFilterWord))) {
-                    filterPlayList.addLast(current.element);
+                while (current != null) {
+                    if (Objects.equals(current.element.getLen(), theFilterWord))
+                        filterPlayList.addLast(current.element);
                     current = current.next;
                 }
                 break;
 
             case 6://topic
-                while ((current != null) && (Objects.equals(current.element.getTopic(), theFilterWord))) {
-                    filterPlayList.addLast(current.element);
+                while (current != null) {
+                    if (Objects.equals(current.element.getTopic(), theFilterWord))
+                        filterPlayList.addLast(current.element);
                     current = current.next;
                 }
                 break;
@@ -289,6 +294,7 @@ public class LinkedList<T> {
             System.out.println("Genre : " + current.element.getGenre());
             System.out.println("Len : " + current.element.getLen());
             System.out.println("Topic : " + current.element.getTopic());
+            System.out.println();
             current = current.next;
         }
     }

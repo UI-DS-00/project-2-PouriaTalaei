@@ -23,6 +23,7 @@ public class Main {
         PlayListMethods.playlists.add(playList);
         PlayListMethods.playlists.add(playList2);
         playList.mergePlayLists(playList,playList2);
+        playList.filter(6,"romantic",playList);
 
     }
 }
