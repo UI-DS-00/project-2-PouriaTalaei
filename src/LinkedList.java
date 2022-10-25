@@ -135,7 +135,6 @@ public class LinkedList<T> {
         }
     }
 
-
     PlayListMethods playListMethods = new PlayListMethods();
 
     public void mergePlayLists(LinkedList<Music> playList1, LinkedList<Music> playList2) {
@@ -178,7 +177,7 @@ public class LinkedList<T> {
         for (int i = 0; i < allSongs.size(); i++) { //create Array of numbers to choose them random
             randomNumbers.add(i, i);
         }
-        addSongsToShuffleMergeRandom(randomNumbers,random,shufflePlayList,allSongs);
+        addSongsToShuffleMergeRandom(randomNumbers, random, shufflePlayList, allSongs);
         PlayListMethods.playlists.add(shufflePlayList);
     }
 
@@ -188,7 +187,6 @@ public class LinkedList<T> {
             shufflePlayList.addLast(allSongs.get(randomNumber));
             randomNumbers.remove(randomNumber);
         }
-
     }
 
     public void addAllSongToArrayList(ArrayList<Music> allSongs) {
@@ -199,6 +197,7 @@ public class LinkedList<T> {
             allSongs.add(current.element);
             current = current.next;
         }
+
         boolean repetitiousSong = false;
         for (int i = 1; i < PlayListMethods.playlists.size(); i++) {
             current = PlayListMethods.playlists.get(i).getHead();
@@ -213,6 +212,64 @@ public class LinkedList<T> {
                 current = current.next;
             }
         }
+    }
+
+
+    public <T extends LinkedList<Music>> void filter(int numberOfMenu, String theFilterWord, LinkedList<Music> playList) {
+        LinkedList<Music> filterPlayList = new LinkedList<>("FilterPlayList");
+        if (playList.getSize() == 0) return;
+        Node<Music> current;
+        current = playList.getHead();
+        //Node<Music> previous = new LinkedList.Node<Music>();
+        while ((current != null) && (Objects.equals(current.element.getArtistName(), theFilterWord))) {
+
+        }
+
+
+        switch (numberOfMenu) {
+            case 1://ArtistName
+                while ((current != null) && (Objects.equals(current.element.getArtistName(), theFilterWord))) {
+                    filterPlayList.addLast(current.element);
+                    current = current.next;
+                }
+                break;
+
+            case 2://track Name
+                while ((current != null) && (Objects.equals(current.element.getTrackName(), theFilterWord))) {
+                    filterPlayList.addLast(current.element);
+                    current = current.next;
+                }
+                break;
+
+            case 3://releaseDate
+                while ((current != null) && (Objects.equals(current.element.getReleaseDate(), theFilterWord))) {
+                    filterPlayList.addLast(current.element);
+                    current = current.next;
+                }
+                break;
+
+            case 4://genre
+                while ((current != null) && (Objects.equals(current.element.getGenre(), theFilterWord))) {
+                    filterPlayList.addLast(current.element);
+                    current = current.next;
+                }
+                break;
+
+            case 5://len
+                while ((current != null) && (Objects.equals(current.element.getLen(), theFilterWord))) {
+                    filterPlayList.addLast(current.element);
+                    current = current.next;
+                }
+                break;
+
+            case 6://topic
+                while ((current != null) && (Objects.equals(current.element.getTopic(), theFilterWord))) {
+                    filterPlayList.addLast(current.element);
+                    current = current.next;
+                }
+                break;
+        }
+//show filterPlayList
 
     }
 }
