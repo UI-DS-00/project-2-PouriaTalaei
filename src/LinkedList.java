@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class LinkedList<T> {
     private static class Node<T> {
@@ -165,5 +167,52 @@ public class LinkedList<T> {
             else repetitiousSong = false;
             currentPlayList2 = currentPlayList2.next;
         }
+    }
+
+    public void shuffleMerge(String nameOfShufflePlayList) {
+        LinkedList<Music> shufflePlayList = new LinkedList<>(nameOfShufflePlayList);
+        ArrayList<Music> allSongs = new ArrayList<>();
+        ArrayList<Integer> randomNumbers = new ArrayList<>();
+        Random random = new Random();
+        addAllSongToArrayList(allSongs);
+        for (int i = 0; i < allSongs.size(); i++) { //create Array of numbers to choose them random
+            randomNumbers.add(i, i);
+        }
+        addSongsToShuffleMergeRandom(randomNumbers,random,shufflePlayList,allSongs);
+        PlayListMethods.playlists.add(shufflePlayList);
+    }
+
+    public void addSongsToShuffleMergeRandom(ArrayList<Integer> randomNumbers, Random random, LinkedList<Music> shufflePlayList, ArrayList<Music> allSongs) {
+        for (int i = 0; i < randomNumbers.size(); ) {
+            int randomNumber = random.nextInt(randomNumbers.size());
+            shufflePlayList.addLast(allSongs.get(randomNumber));
+            randomNumbers.remove(randomNumber);
+        }
+
+    }
+
+    public void addAllSongToArrayList(ArrayList<Music> allSongs) {
+        Node<Music> current;
+        current = PlayListMethods.playlists.get(0).getHead();
+        //first add one playlist to decrease HazIneH
+        while (current != null) {
+            allSongs.add(current.element);
+            current = current.next;
+        }
+        boolean repetitiousSong = false;
+        for (int i = 1; i < PlayListMethods.playlists.size(); i++) {
+            current = PlayListMethods.playlists.get(i).getHead();
+            while (current != null) {
+                for (int j = 0; j < allSongs.size(); j++) {
+                    if (Objects.equals(allSongs.get(j).getTrackName(), current.element.getTrackName()))
+                        repetitiousSong = true;
+                }
+                if (!repetitiousSong)
+                    allSongs.add(current.element);
+                else repetitiousSong = false;
+                current = current.next;
+            }
+        }
+
     }
 }
